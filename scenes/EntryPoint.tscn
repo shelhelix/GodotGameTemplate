@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://clg8corn3you1"]
+[gd_scene load_steps=4 format=3 uid="uid://clg8corn3you1"]
 
 [ext_resource type="Script" path="res://addons/label_font_auto_sizer/label_auto_sizer.gd" id="1_bf8as"]
 [ext_resource type="Script" path="res://addons/fancy_particles/particles.gd" id="3_4c4vg"]
+[ext_resource type="Script" path="res://scripts/entry_point/buttons_animator.gd" id="3_xp8ib"]
 
 [node name="EntryPoint" type="Control"]
 layout_mode = 3
@@ -55,28 +56,40 @@ _base_font_size = 16
 _current_font_size = 16
 _last_size_state = 1
 
-[node name="Buttons" type="HBoxContainer" parent="."]
+[node name="MainMenuButtons" type="HFlowContainer" parent="." node_paths=PackedStringArray("buttons")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -497.0
-offset_top = -120.0
-offset_right = 497.0
-offset_bottom = -10.0
+offset_left = -496.0
+offset_top = -111.0
+offset_right = 498.0
+offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 25
+theme_override_constants/h_separation = 25
 alignment = 1
+script = ExtResource("3_xp8ib")
+buttons = [NodePath("Cell/Button"), NodePath("Cell2/Button"), NodePath("Cell3/Button"), NodePath("Cell4/Button")]
+hide_offset = Vector2(0, 150)
 
-[node name="PlayButton" type="Button" parent="Buttons"]
-custom_minimum_size = Vector2(200, 0)
+[node name="Cell" type="Control" parent="MainMenuButtons"]
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
+
+[node name="Button" type="Button" parent="MainMenuButtons/Cell"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text_overrun_behavior = 3
 
-[node name="GodotLabel" type="Label" parent="Buttons/PlayButton"]
+[node name="Label" type="Label" parent="MainMenuButtons/Cell/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,12 +111,21 @@ _base_font_size = 29
 _current_font_size = 29
 _last_size_state = 1
 
-[node name="Settings" type="Button" parent="Buttons"]
-custom_minimum_size = Vector2(200, 0)
+[node name="Cell2" type="Control" parent="MainMenuButtons"]
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
+
+[node name="Button" type="Button" parent="MainMenuButtons/Cell2"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text_overrun_behavior = 3
 
-[node name="GodotLabel" type="Label" parent="Buttons/Settings"]
+[node name="Label" type="Label" parent="MainMenuButtons/Cell2/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -125,12 +147,21 @@ _base_font_size = 29
 _current_font_size = 29
 _last_size_state = 1
 
-[node name="Credits" type="Button" parent="Buttons"]
-custom_minimum_size = Vector2(200, 0)
+[node name="Cell3" type="Control" parent="MainMenuButtons"]
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
+
+[node name="Button" type="Button" parent="MainMenuButtons/Cell3"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text_overrun_behavior = 3
 
-[node name="GodotLabel" type="Label" parent="Buttons/Credits"]
+[node name="Label" type="Label" parent="MainMenuButtons/Cell3/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,7 +169,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 29
-text = "Credits"
+text = "Credits
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -152,12 +184,21 @@ _base_font_size = 29
 _current_font_size = 29
 _last_size_state = 1
 
-[node name="Exit" type="Button" parent="Buttons"]
-custom_minimum_size = Vector2(200, 0)
+[node name="Cell4" type="Control" parent="MainMenuButtons"]
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
+
+[node name="Button" type="Button" parent="MainMenuButtons/Cell4"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text_overrun_behavior = 3
 
-[node name="GodotLabel" type="Label" parent="Buttons/Exit"]
+[node name="Label" type="Label" parent="MainMenuButtons/Cell4/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -165,8 +206,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 29
-text = "Exit
-"
+text = "Exit"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
