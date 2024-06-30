@@ -17,7 +17,6 @@ func __show_buttons():
 	var sequence := get_tree().create_tween().set_parallel(true)
 	var delay := 0.2
 	var currentDelay := 0.0
-	sequence.tween_interval(5.0)
 	sequence.chain()
 	for button in buttons:
 		sequence.tween_property(button, "position", buttons_positions[button], 0.4).set_delay(currentDelay).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
