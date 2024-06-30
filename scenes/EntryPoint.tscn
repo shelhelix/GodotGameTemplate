@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/label_font_auto_sizer/label_auto_sizer.gd" id="1_bf8as"]
 [ext_resource type="Script" path="res://addons/fancy_particles/particles.gd" id="3_4c4vg"]
-[ext_resource type="Script" path="res://scripts/entry_point/buttons_animator.gd" id="3_xp8ib"]
+[ext_resource type="Script" path="res://scripts/entry_point/main_menu_buttons.gd" id="3_7t2s3"]
 
 [node name="EntryPoint" type="Control"]
 layout_mode = 3
@@ -56,7 +56,7 @@ _base_font_size = 16
 _current_font_size = 16
 _last_size_state = 1
 
-[node name="MainMenuButtons" type="HFlowContainer" parent="." node_paths=PackedStringArray("buttons")]
+[node name="MainMenuButtons" type="HBoxContainer" parent="." node_paths=PackedStringArray("play_button", "settings_button", "credits_button", "quit_button_container", "quit_button")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -69,17 +69,21 @@ offset_right = 498.0
 offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/h_separation = 25
+theme_override_constants/separation = 25
 alignment = 1
-script = ExtResource("3_xp8ib")
-buttons = [NodePath("Cell/Button"), NodePath("Cell2/Button"), NodePath("Cell3/Button"), NodePath("Cell4/Button")]
-hide_offset = Vector2(0, 150)
+script = ExtResource("3_7t2s3")
+play_button = NodePath("PlayButtonBox/Button")
+next_scene_name = "res://scenes/Gameplay.tscn"
+settings_button = NodePath("SettingsButtonBox/Button")
+credits_button = NodePath("CreditsButtonBox/Button")
+quit_button_container = NodePath("ExitButtonBox")
+quit_button = NodePath("ExitButtonBox/Button")
 
-[node name="Cell" type="Control" parent="MainMenuButtons"]
+[node name="PlayButtonBox" type="Control" parent="MainMenuButtons"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MainMenuButtons/Cell"]
+[node name="Button" type="Button" parent="MainMenuButtons/PlayButtonBox"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 anchors_preset = 15
@@ -89,7 +93,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text_overrun_behavior = 3
 
-[node name="Label" type="Label" parent="MainMenuButtons/Cell/Button"]
+[node name="Label" type="Label" parent="MainMenuButtons/PlayButtonBox/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,11 +115,11 @@ _base_font_size = 29
 _current_font_size = 29
 _last_size_state = 1
 
-[node name="Cell2" type="Control" parent="MainMenuButtons"]
+[node name="SettingsButtonBox" type="Control" parent="MainMenuButtons"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MainMenuButtons/Cell2"]
+[node name="Button" type="Button" parent="MainMenuButtons/SettingsButtonBox"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 anchors_preset = 15
@@ -125,7 +129,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text_overrun_behavior = 3
 
-[node name="Label" type="Label" parent="MainMenuButtons/Cell2/Button"]
+[node name="Label" type="Label" parent="MainMenuButtons/SettingsButtonBox/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -147,11 +151,11 @@ _base_font_size = 29
 _current_font_size = 29
 _last_size_state = 1
 
-[node name="Cell3" type="Control" parent="MainMenuButtons"]
+[node name="CreditsButtonBox" type="Control" parent="MainMenuButtons"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MainMenuButtons/Cell3"]
+[node name="Button" type="Button" parent="MainMenuButtons/CreditsButtonBox"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 anchors_preset = 15
@@ -161,7 +165,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text_overrun_behavior = 3
 
-[node name="Label" type="Label" parent="MainMenuButtons/Cell3/Button"]
+[node name="Label" type="Label" parent="MainMenuButtons/CreditsButtonBox/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -184,11 +188,11 @@ _base_font_size = 29
 _current_font_size = 29
 _last_size_state = 1
 
-[node name="Cell4" type="Control" parent="MainMenuButtons"]
+[node name="ExitButtonBox" type="Control" parent="MainMenuButtons"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MainMenuButtons/Cell4"]
+[node name="Button" type="Button" parent="MainMenuButtons/ExitButtonBox"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 anchors_preset = 15
@@ -198,7 +202,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text_overrun_behavior = 3
 
-[node name="Label" type="Label" parent="MainMenuButtons/Cell4/Button"]
+[node name="Label" type="Label" parent="MainMenuButtons/ExitButtonBox/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
