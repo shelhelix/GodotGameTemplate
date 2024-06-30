@@ -18,9 +18,10 @@ config/icon="res://icon.svg"
 [audio]
 
 buses/default_bus_layout="res://settings/audio_mixer.tres"
+
 [autoload]
 
-EntryPoint="*res://scenes/EntryPoint.tscn"
+GlobalObjects="*res://scenes/global_objects.tscn"
 
 [display]
 
