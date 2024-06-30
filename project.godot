@@ -11,10 +11,13 @@ config_version=5
 [application]
 
 config/name="Godot Game"
-run/main_scene="res://scenes/EntryPoint.tscn"
+run/main_scene="res://scenes/entry_point.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://settings/audio_mixer.tres"
 [autoload]
 
 EntryPoint="*res://scenes/EntryPoint.tscn"
