@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://clg8corn3you1"]
+[gd_scene load_steps=6 format=3 uid="uid://clg8corn3you1"]
 
 [ext_resource type="Script" path="res://addons/label_font_auto_sizer/label_auto_sizer.gd" id="1_bf8as"]
 [ext_resource type="Script" path="res://addons/fancy_particles/particles.gd" id="3_4c4vg"]
 [ext_resource type="Script" path="res://scripts/entry_point/main_menu_buttons.gd" id="3_qfne6"]
+[ext_resource type="Script" path="res://scripts/utils/button_with_sound.gd" id="4_e0l3g"]
+[ext_resource type="AudioStream" uid="uid://du7255soqvjtj" path="res://audio/sfx/ui_button_click.mp3" id="5_u7vv5"]
 
 [node name="EntryPoint" type="Control"]
 layout_mode = 3
@@ -12,7 +14,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Back" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Back"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Particles" type="Control" parent="Background"]
+[node name="Particles" type="Control" parent="Back/Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,7 +40,23 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_4c4vg")
 
-[node name="GodotLabel" type="Label" parent="."]
+[node name="Windows" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainWindow" type="Control" parent="Windows"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GodotLabel" type="Label" parent="Windows/MainWindow"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -56,7 +82,7 @@ _base_font_size = 16
 _current_font_size = 16
 _last_size_state = 1
 
-[node name="MainMenuButtons" type="HBoxContainer" parent="." node_paths=PackedStringArray("play_button", "settings_button", "credits_button", "quit_button_container", "quit_button")]
+[node name="MainMenuButtons" type="HBoxContainer" parent="Windows/MainWindow" node_paths=PackedStringArray("play_button", "settings_button", "credits_button", "quit_button_container", "quit_button")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -79,21 +105,22 @@ credits_button = NodePath("CreditsButtonBox/Button")
 quit_button_container = NodePath("ExitButtonBox")
 quit_button = NodePath("ExitButtonBox/Button")
 
-[node name="PlayButtonBox" type="Control" parent="MainMenuButtons"]
+[node name="PlayButtonBox" type="Control" parent="Windows/MainWindow/MainMenuButtons"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MainMenuButtons/PlayButtonBox"]
+[node name="Button" type="Button" parent="Windows/MainWindow/MainMenuButtons/PlayButtonBox"]
 custom_minimum_size = Vector2(200, 100)
-layout_mode = 1
-anchors_preset = 15
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text_overrun_behavior = 3
+script = ExtResource("4_e0l3g")
+sound_clip = ExtResource("5_u7vv5")
 
-[node name="Label" type="Label" parent="MainMenuButtons/PlayButtonBox/Button"]
+[node name="Label" type="Label" parent="Windows/MainWindow/MainMenuButtons/PlayButtonBox/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -115,11 +142,11 @@ _base_font_size = 29
 _current_font_size = 29
 _last_size_state = 1
 
-[node name="SettingsButtonBox" type="Control" parent="MainMenuButtons"]
+[node name="SettingsButtonBox" type="Control" parent="Windows/MainWindow/MainMenuButtons"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MainMenuButtons/SettingsButtonBox"]
+[node name="Button" type="Button" parent="Windows/MainWindow/MainMenuButtons/SettingsButtonBox"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 anchors_preset = 15
@@ -128,8 +155,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text_overrun_behavior = 3
+script = ExtResource("4_e0l3g")
+sound_clip = ExtResource("5_u7vv5")
 
-[node name="Label" type="Label" parent="MainMenuButtons/SettingsButtonBox/Button"]
+[node name="Label" type="Label" parent="Windows/MainWindow/MainMenuButtons/SettingsButtonBox/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -151,21 +180,25 @@ _base_font_size = 29
 _current_font_size = 29
 _last_size_state = 1
 
-[node name="CreditsButtonBox" type="Control" parent="MainMenuButtons"]
+[node name="CreditsButtonBox" type="Control" parent="Windows/MainWindow/MainMenuButtons"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MainMenuButtons/CreditsButtonBox"]
+[node name="Button" type="Button" parent="Windows/MainWindow/MainMenuButtons/CreditsButtonBox"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 text_overrun_behavior = 3
+script = ExtResource("4_e0l3g")
+sound_clip = ExtResource("5_u7vv5")
 
-[node name="Label" type="Label" parent="MainMenuButtons/CreditsButtonBox/Button"]
+[node name="Label" type="Label" parent="Windows/MainWindow/MainMenuButtons/CreditsButtonBox/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -188,11 +221,11 @@ _base_font_size = 29
 _current_font_size = 29
 _last_size_state = 1
 
-[node name="ExitButtonBox" type="Control" parent="MainMenuButtons"]
+[node name="ExitButtonBox" type="Control" parent="Windows/MainWindow/MainMenuButtons"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MainMenuButtons/ExitButtonBox"]
+[node name="Button" type="Button" parent="Windows/MainWindow/MainMenuButtons/ExitButtonBox"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 anchors_preset = 15
@@ -201,8 +234,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text_overrun_behavior = 3
+script = ExtResource("4_e0l3g")
+sound_clip = ExtResource("5_u7vv5")
 
-[node name="Label" type="Label" parent="MainMenuButtons/ExitButtonBox/Button"]
+[node name="Label" type="Label" parent="Windows/MainWindow/MainMenuButtons/ExitButtonBox/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
