@@ -8,7 +8,10 @@ class_name GlobalAudio
 func play_sfx(sound: AudioStream) -> void:
 	if not sfx_player.playing:
 		sfx_player.play()
-	var playback := sfx_player.get_stream_playback() as AudioStreamPlaybackPolyphonic 
+	var playback := sfx_player.get_stream_playback() as AudioStreamPlaybackPolyphonic
+	if not playback:
+		printerr("Error: playback is null")
+		return
 	playback.play_stream(sound)
 	
 func play_music(sound: AudioStream) -> void:

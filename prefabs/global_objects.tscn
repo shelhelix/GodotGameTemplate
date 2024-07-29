@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://nub6yq71re7i"]
+
+[ext_resource type="Script" path="res://scripts/global/global_starter.gd" id="1_2t5ky"]
+[ext_resource type="Script" path="res://scripts/global/global_audio.gd" id="2_v1tun"]
+[ext_resource type="AudioStream" uid="uid://5xcq8ug2p3ho" path="res://audio/bgm/Weightless Dreams.mp3" id="3_3cuba"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_tps71"]
+
+[node name="GlobalObjects" type="Node2D" node_paths=PackedStringArray("audio_player")]
+script = ExtResource("1_2t5ky")
+audio_player = NodePath("Audio")
+
+[node name="Audio" type="Node2D" parent="." node_paths=PackedStringArray("sfx_player", "music_player")]
+script = ExtResource("2_v1tun")
+sfx_player = NodePath("SfxPlayer")
+music_player = NodePath("MusicPlayer")
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="Audio"]
+stream = SubResource("AudioStreamPolyphonic_tps71")
+bus = &"SFX"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("3_3cuba")
+autoplay = true
+bus = &"BGM"

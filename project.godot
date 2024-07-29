@@ -21,7 +21,7 @@ buses/default_bus_layout="res://settings/audio_mixer.tres"
 
 [autoload]
 
-GlobalObjects="res://scenes/global_objects.tscn"
+GlobalObjects="res://prefabs/global_objects.tscn"
 
 [display]
 

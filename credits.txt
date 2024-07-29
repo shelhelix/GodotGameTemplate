@@ -2,4 +2,6 @@ Credits:
 	k2kra - fancy particles
 	lescandez - label font auto sizer
 	pixabay.com - sfx
+	suno AI - bgm music
+	
 	
